@@ -1,7 +1,7 @@
 ####################################
 # MULTISTEP Dockerfile
 
-FROM node:14.10.1-alpine3.10 AS builder
+FROM node:14.10.1-alpine3.10
 
 WORKDIR /app
 
@@ -15,5 +15,5 @@ RUN npm run build
 
 FROM nginx
 EXPOSE 80
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
 
